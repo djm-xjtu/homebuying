@@ -1,0 +1,4 @@
+import type { Metadata } from "next";
+import { DocumentExplainer } from "@/components/document-explainer";
+export const metadata:Metadata={title:"AI Home-Buying Document Explainer",description:"Turn an Irish loan offer, BER certificate, block policy, or Contract for Sale into a plain-English review checklist."};
+export default function DocumentsPage(){return <main><section className="page-hero"><div className="container"><span className="eyebrow"><span className="dot"/>Document explainer</span><h1>Dense paperwork, translated into useful questions.</h1><p className="lead">See what a document appears to say, what deserves attention, and what to confirm with your solicitor or regulated broker.</p></div></section><section className="section"><div className="container"><DocumentExplainer/></div></section></main>}

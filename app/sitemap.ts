@@ -1,0 +1,2 @@
+import type { MetadataRoute } from "next";import { GUIDES } from "@/lib/guides";
+export default function sitemap():MetadataRoute.Sitemap{const base="https://homebuying.ie";return ["","/calculator","/checklist","/documents","/guides","/about","/privacy",...Object.keys(GUIDES).map(s=>`/guides/${s}`)].map(url=>({url:base+url,lastModified:new Date("2026-07-03"),changeFrequency:"monthly" as const,priority:url===""?1:.7}))}
