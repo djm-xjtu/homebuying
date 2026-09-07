@@ -19,12 +19,15 @@ export const metadata: Metadata = {
     siteName: "HomeBuying.ie",
     type: "website",
     locale: "en_IE",
+    images: [{ url: "/og.svg", width: 1200, height: 630, alt: "HomeBuying.ie" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "HomeBuying.ie",
     description: "A clearer path from mortgage maths to moving day.",
+    images: ["/twitter.svg"],
   },
+  icons: { icon: "/icon.svg" },
 };
 
 const structuredData = {

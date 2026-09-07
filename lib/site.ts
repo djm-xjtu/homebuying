@@ -5,6 +5,13 @@ export const SITE = {
   // - https://homebuying.ie
   // - https://djm-xjtu.github.io/homebuying
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://homebuying.ie",
+
+  broker: {
+    // For GitHub Pages (static), use an external form endpoint (Typeform/Google Form/etc.).
+    // Example: https://forms.gle/xxxx or https://formspree.io/f/xxxx
+    leadFormUrl: process.env.NEXT_PUBLIC_LEAD_FORM_URL ?? "",
+  },
+
   valuationReport: {
     // External payment link (Stripe Payment Link / Gumroad product, etc.)
     paymentUrl: process.env.NEXT_PUBLIC_VALUATION_PAYMENT_URL ?? "",

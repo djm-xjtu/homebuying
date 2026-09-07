@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { GUIDES } from "@/lib/guides";
 import { SITE } from "@/lib/site";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.url.replace(/\/$/, "");
   const lastModified = new Date();
