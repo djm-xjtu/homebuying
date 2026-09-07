@@ -1,1 +1,37 @@
-export default function PrivacyPage(){return <main><section className="page-hero"><div className="container"><span className="eyebrow"><span className="dot"/>Privacy</span><h1>Collect less. Explain clearly. Delete on purpose.</h1></div></section><article className="guide-body"><h2>Documents</h2><p>In this MVP, uploaded PDFs are held in server memory only while text is extracted and analysed. HomeBuying.ie does not intentionally write the original file or extracted analysis to storage. If an external AI provider is configured, extracted text is sent to that provider for the requested analysis; production must document the provider, location, retention, and legal basis.</p><h2>Checklist data</h2><p>Checklist progress is stored only in your browser using local storage. Clearing site data removes it.</p><h2>Broker requests</h2><p>If you request contact, we collect your name, email, phone, stated need, consent, and time of request. The local MVP stores this in a restricted server-side file. Before deployment, replace this with encrypted EU-region database storage, role-based access, an audit trail, and a documented retention schedule.</p><h2>Your rights</h2><p>Under applicable data-protection law, you may have rights of access, correction, erasure, restriction, objection, and portability, and the right to complain to the Data Protection Commission. Production contact and controller details must be inserted before launch.</p><div className="notice">Draft product policy—not a production-ready privacy notice. Controller identity, processors, transfers, cookies, retention periods, contact details and lawful bases require completion and legal review before collecting real users’ data.</div></article></main>}
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy policy (draft)",
+  description: "Privacy-first MVP: what HomeBuying.ie stores, what stays in your browser, and what must be completed before production launch.",
+};
+
+export default function PrivacyPage() {
+  return (
+    <main>
+      <section className="page-hero">
+        <div className="container">
+          <span className="eyebrow">
+            <span className="dot" />Privacy
+          </span>
+          <h1>Collect less. Explain clearly. Delete on purpose.</h1>
+        </div>
+      </section>
+      <article className="guide-body">
+        <h2>Documents</h2>
+        <p>In this MVP, uploaded PDFs are held in server memory only while text is extracted and analysed. HomeBuying.ie does not intentionally write the original file or extracted analysis to storage. If an external AI provider is configured, extracted text is sent to that provider for the requested analysis; production must document the provider, location, retention, and legal basis.</p>
+
+        <h2>Checklist data</h2>
+        <p>Checklist progress is stored only in your browser using local storage. Clearing site data removes it.</p>
+
+        <h2>Broker requests</h2>
+        <p>If you request contact, we collect your name, email, phone, stated need, consent, and time of request. The local MVP stores this in a restricted server-side file. Before deployment, replace this with encrypted EU-region database storage, role-based access, an audit trail, and a documented retention schedule.</p>
+
+        <h2>Your rights</h2>
+        <p>Under applicable data-protection law, you may have rights of access, correction, erasure, restriction, objection, and portability, and the right to complain to the Data Protection Commission. Production contact and controller details must be inserted before launch.</p>
+
+        <div className="notice">Draft product policy—not a production-ready privacy notice. Controller identity, processors, transfers, cookies, retention periods, contact details and lawful bases require completion and legal review before collecting real users’ data.</div>
+      </article>
+    </main>
+  );
+}
+
