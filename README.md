@@ -6,8 +6,8 @@ A mobile-first Irish home-buying navigator: mortgage and cost estimates, a stage
 
 - `/calculator`: LTI/LTV affordability, annuity repayments, rate sensitivity, progressive residential stamp duty, cost ranges, and a Help to Buy orientation flag.
 - `/checklist`: nine expandable milestones with browser-local progress persistence.
-- `/documents`: in-memory PDF parsing. With no API key it runs a clearly labelled local phrase extractor; with an OpenAI key it requests structured, non-advisory analysis.
-- Broker introduction modal and validated server endpoint. The local adapter writes to `data/leads.jsonl` with restrictive file permissions.
+- `/documents`: client-side PDF parsing (in your browser) and a clearly labelled local demo analyser. No uploads.
+- Broker introduction modal and landing page. For GitHub Pages (static), it hands off to an external form URL you configure.
 - Static guides, metadata, sitemap, robots, Open Graph images, structured data, disclaimers, and a draft privacy page.
 - SEO landing pages for monetisation: `/broker-introduction` (lead capture) and `/valuation-report` (paid report offer with configurable payment link).
 
@@ -25,9 +25,22 @@ npm test
 npm run build
 ```
 
+## GitHub Pages deployment
+
+This project is configured to deploy as a **static export** to GitHub Pages (Project Pages) via GitHub Actions.
+
+- Pages URL (after merge + first deploy): `https://djm-xjtu.github.io/homebuying/`
+- Workflow: `.github/workflows/pages.yml`
+
+Important: GitHub Pages is static, so **server-side API routes are not available**. Lead capture and payments use external links:
+- Broker leads: set `NEXT_PUBLIC_LEAD_FORM_URL` to a Typeform / Google Form / Formspree endpoint.
+- Paid report: set `NEXT_PUBLIC_VALUATION_PAYMENT_URL` (Stripe Payment Link / Gumroad) and optionally `NEXT_PUBLIC_VALUATION_INTAKE_URL`.
+
 ## Environment
 
-Copy `.env.example` to `.env.local`. `OPENAI_API_KEY` is optional; without it the document route remains usable in local demo mode. The API is called server-side and the key is never exposed to the browser.
+Copy `.env.example` to `.env.local`.
+- `NEXT_PUBLIC_SITE_URL` should match your deployment base URL.
+- For GitHub Pages, set `NEXT_PUBLIC_BASE_PATH=/homebuying`.
 
 ## Rules and sources
 
@@ -43,18 +56,17 @@ Calculator outputs are estimates, not underwriting decisions or regulated advice
 
 This repository is a working product MVP, not a claim that regulated, privacy, or operational launch work is complete.
 
-1. Obtain Irish counsel review of the introducer model, Consumer Protection Code implications, marketing claims, AI disclaimers, terms, professional indemnity/cyber cover, and legal-services referral restrictions.
-2. Replace file-based lead persistence with encrypted EU-region Postgres, role-based access, audit logs, verified deletion/retention jobs, and a processor inventory/DPA set.
+1. Obtain Irish counsel review of the introducer model, Consumer Protection Code implications, marketing claims, terms, professional indemnity/cyber cover, and legal-services referral restrictions.
+2. If you collect broker leads directly (instead of an external form provider), store them in an encrypted EU-region database with role-based access, audit logs, and an explicit retention/deletion job.
 3. Add authentication and a database-backed `ChecklistProgress` repository if cross-device sync is required. The current privacy-first browser persistence is intentional and disclosed in the UI.
-4. Complete the privacy notice with the controller identity, contact, lawful bases, exact retention, subprocessors/transfers, cookies/analytics, and data-subject request process. Perform a DPIA for document analysis.
-5. Configure a model provider with an appropriate enterprise data-retention agreement. Add OCR for scanned PDFs, malware scanning, encryption/key management if files are ever retained, per-user quotas, rate limiting, abuse controls, and deletion verification.
+4. Complete the privacy notice with the controller identity, contact, lawful bases, exact retention, subprocessors/transfers, cookies/analytics, and data-subject request process.
+5. If you add server-side document analysis later, perform a DPIA, add malware scanning, OCR for scanned PDFs, rate limiting, abuse controls, and verified deletion.
 6. Verify every partner against the Central Bank register immediately before activation and disclose all remuneration/conflicts. Add a double-confirmation handoff rather than silently sharing a lead.
-7. Add transactional email, monitoring, error reporting, consent-version tracking, analytics with consent controls, accessibility testing, and browser E2E tests.
+7. Add monitoring, error reporting, consent-version tracking, analytics with consent controls, accessibility testing, and browser E2E tests.
 8. Re-check policy config against official sources before each release and on a scheduled basis.
 
 ## Architecture notes
 
 - The calculation domain is pure TypeScript and covered by Node tests.
-- Uploads are capped at 10 MB/60 pages and handled in server memory; the original PDF and extracted text are not written by this app.
-- The model prompt forbids sign/buy/borrow conclusions. Responses are schema-validated, but the UI still treats them as fallible automated explanations.
+- On GitHub Pages, document analysis runs locally in the browser and does not upload PDFs to the site.
 - Broker consent is explicit. The production handoff should preserve evidence of the privacy notice and consent version shown at submission time.
