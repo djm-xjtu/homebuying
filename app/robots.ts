@@ -1,2 +1,9 @@
 import type { MetadataRoute } from "next";
-export default function robots():MetadataRoute.Robots{return {rules:{userAgent:"*",allow:"/",disallow:["/api/"]},sitemap:"https://homebuying.ie/sitemap.xml"}}
+import { SITE } from "@/lib/site";
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: { userAgent: "*", allow: "/", disallow: ["/api/"] },
+    sitemap: `${SITE.url.replace(/\/$/, "")}/sitemap.xml`,
+  };
+}

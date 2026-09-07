@@ -8,7 +8,8 @@ A mobile-first Irish home-buying navigator: mortgage and cost estimates, a stage
 - `/checklist`: nine expandable milestones with browser-local progress persistence.
 - `/documents`: in-memory PDF parsing. With no API key it runs a clearly labelled local phrase extractor; with an OpenAI key it requests structured, non-advisory analysis.
 - Broker introduction modal and validated server endpoint. The local adapter writes to `data/leads.jsonl` with restrictive file permissions.
-- Static guides, metadata, sitemap, robots, Article/FAQ structured data, disclaimers, and a draft privacy page.
+- Static guides, metadata, sitemap, robots, Open Graph images, structured data, disclaimers, and a draft privacy page.
+- SEO landing pages for monetisation: `/broker-introduction` (lead capture) and `/valuation-report` (paid report offer with configurable payment link).
 
 ## Run locally
 
